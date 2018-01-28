@@ -15,10 +15,9 @@ PYCPP_USING_NAMESPACE
 TEST(crt, is_relocatable)
 {
     using allocator_type = crt_allocator<char>;
-// TODO: restore resource
-//    using resource_type = crt_resource;
+    using resource_type = pmr::crt_resource;
     static_assert(is_relocatable<allocator_type>::value, "");
-//    static_assert(is_relocatable<resource_type>::value, "");
+    static_assert(is_relocatable<resource_type>::value, "");
 }
 
 
@@ -83,14 +82,13 @@ TEST(crt_allocator, vector)
 }
 
 
-// TODO: restore resource
-//TEST(crt_allocator, polymorphic)
-//{
-//    using allocator_type = polymorphic_allocator<int>;
-//    using resource_type = crt_resource;
-//    using vector_type = std::vector<int, allocator_type>;
-//
-//    resource_type resource;
-//    vector_type v1 = vector_type(allocator_type(&resource));
-//    v1.emplace_back(1);
-//}
+TEST(crt_allocator, polymorphic)
+{
+    using allocator_type = pmr::polymorphic_allocator<int>;
+    using resource_type = pmr::crt_resource;
+    using vector_type = std::vector<int, allocator_type>;
+
+    resource_type resource;
+    vector_type v1 = vector_type(allocator_type(&resource));
+    v1.emplace_back(1);
+}

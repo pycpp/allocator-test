@@ -2,7 +2,10 @@
 #  :license: MIT, see licenses/mit.md for more details.
 
 add_tests(
+    pool/allocator.cc
+    pool/pool.cc
     aligned.cc
     crt.cc
-    null.cc
+    new_delete.cc
+    null_memory.cc
 )
